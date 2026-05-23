@@ -4,7 +4,11 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-        }
-    }
-}
+            //a Movie rental Project by Owen Matthews and Danny Huang.
+
+
+
+
+        }//end of main
+    }//end of class Program
+}//end of namespace
