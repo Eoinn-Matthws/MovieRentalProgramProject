@@ -13,7 +13,7 @@
             Console.WriteLine("");
 
             Console.WriteLine("1. Sign up");
-            Console.WriteLine("2. Login in");
+            Console.WriteLine("2. Login");
             Console.WriteLine("3. Exit");
             Console.Write("Enter a option: ");
             string mainChoice = Console.ReadLine();
@@ -21,15 +21,10 @@
             switch (mainChoice)
             {
                 case "1":
-                    Console.WriteLine();
-                    Console.WriteLine("Sign up");
+                    SignUp();
                     break;
                 case "2":
-                    Console.WriteLine("");
-                    Console.WriteLine("Please enter your username");
-                    Console.ReadLine();
-                    Console.WriteLine("Please enter your password");
-                    Console.ReadLine();
+                    Login();
                     break;
                 case "3":
                     Console.WriteLine("");
@@ -46,5 +41,37 @@
 
 
         }//end of main
+
+        public static void SignUp()
+        {
+            Console.WriteLine("Please enter a username");
+            string username = Console.ReadLine();
+            Console.WriteLine("Please enter a password");
+            string password = Console.ReadLine();
+
+            Console.WriteLine("Is this a Customer or Admin Account");
+            string userType = Console.ReadLine();
+            if (userType == "admin")
+            {
+                //store the results in the Admin class 
+
+            }
+            else
+            {
+                //Store th results in the Customer class
+            }
+                
+            Console.WriteLine("Account has been createdd successfully");
+        }//end of SignUp
+
+        public static void Login()
+        {
+            Console.WriteLine("Please enter your username");
+            Console.ReadLine();
+            Console.WriteLine("Please enter your password");
+            Console.ReadLine();
+        }
+
+
     }//end of class Program
 }//end of namespace

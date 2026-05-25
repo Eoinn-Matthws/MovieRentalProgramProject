@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieRentalProgramProject
 {
-    internal class Movie
+    public class Movie
     {
         //this class is for all of the movies infomation
 
