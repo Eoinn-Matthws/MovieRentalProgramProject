@@ -6,7 +6,8 @@
         {
             //a Movie rental Project by Owen Matthews and Danny Huang.
 
-            
+            SignUpLogin login = new SignUpLogin();
+
             //Owen Matthews
             Console.WriteLine("----------- Movie Rental Program -----------");
             Console.WriteLine("--------------------------------------------");
@@ -23,10 +24,11 @@
                 switch (mainChoice)
                 {
                     case "1":
-                        SignUp();
+
+                        login.SignUp();
                         break;
                     case "2":
-                        Login();
+                        login.Login();
                         break;
                     case "3":
                         Console.WriteLine("");
@@ -44,41 +46,7 @@
 
         }//end of main
 
-        public static void SignUp()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Please enter a username");
-            string username = Console.ReadLine();
-            Console.WriteLine("Please enter a password");
-            string password = Console.ReadLine();
-
-            Console.WriteLine("Is this a Customer or Admin Account");
-            string userType = Console.ReadLine();
-            Console.WriteLine("");
-                
-            Console.WriteLine("Account has been created successfully");
-        }//end of SignUp
-
-        public static void Login()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Please enter your username");
-            string username = Console.ReadLine();
-            Console.WriteLine("Please enter your password");
-            string password = Console.ReadLine();
-            
-            if ( username == "admin") //this is just to get an output will need to be changed 
-            {
-                Console.WriteLine("");
-                Admin admin = new Admin();
-                admin.AdminMenu();
-
-            }
-            else
-            {
-                //Store th results in the Customer class
-            }
-        }
+       
 
 
     }//end of class Program
