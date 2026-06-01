@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace MovieRentalProgramProject
 {
+
     public class Customer
     {
+        //Owen Matthews
 
         //fields
         private string username;

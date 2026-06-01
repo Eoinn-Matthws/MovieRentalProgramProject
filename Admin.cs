@@ -12,6 +12,8 @@ namespace MovieRentalProgramProject
         //this class relates to the Admin user
         //Owen Matthews
 
+        public List<Movie> movieDatabase = new List<Movie>();
+
         public Admin()
         {
 
@@ -22,7 +24,7 @@ namespace MovieRentalProgramProject
 
         }
 
-        
+
         public void AdminMenu()
         {
             do
@@ -42,7 +44,7 @@ namespace MovieRentalProgramProject
 
                 switch (adminChoice)
                 {
-                    case "1":
+                    case "1": //done
                         newMovie();
                         break;
                     case "2":
@@ -54,8 +56,8 @@ namespace MovieRentalProgramProject
                     case "4":
                         Console.WriteLine();
                         break;
-                    case "5":
-                        Console.WriteLine();
+                    case "5": //done
+                        ListMovie();
                         break;
                     case "99":
                         return;
@@ -64,12 +66,12 @@ namespace MovieRentalProgramProject
                         Console.WriteLine("Enter a vaild number");
                         break;
                 }//end of switch
-            }while (true);
+            } while (true);
 
         }//end of AdminMenu
 
 
-        public static void newMovie()
+        public void newMovie()
         {
             Console.WriteLine("");
             Console.WriteLine("Enter the Title of the Movie");
@@ -86,8 +88,30 @@ namespace MovieRentalProgramProject
             int Copies = Int32.Parse(Console.ReadLine());
             Console.WriteLine($"‘{MovieName}’ has been successfully added. ");
             Console.WriteLine();
-            Movie movie = new Movie(MovieName,ReleaseDate,GenreMovie,ContentRating,MoviePrice,Copies); //unsure if this works at the moment
+            Movie movie = new Movie(MovieName, ReleaseDate, GenreMovie, ContentRating, MoviePrice, Copies); 
+            movieDatabase.Add(movie);
         }
+        
+        //Owen Matthews
+        //this calls the private list and writes out all of the details from it equil to the amount of moives in the list
+        public void ListMovie()
+        {
+            //checks how many moives are in the database
+            if (movieDatabase.Count == 0)
+            {
+                Console.WriteLine("There are currently no movies in the datebase");
+                return;
+            }
+
+            foreach (Movie movie in movieDatabase)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Movie Title:\t{movie.MovieName}\nRelease Date:\t{movie.ReleaseDate}\nGenre:\t\t{movie.GenreMovie}\nContent Rating:\t{movie.ContentRating}\nPrice:\t\t{movie.MoviePrice}\nNumber of copies available:\t{movie.Copies}");
+                Console.WriteLine();
+            }
+        }
+
+
 
 
     }//end of class Admin
