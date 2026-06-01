@@ -20,7 +20,7 @@ namespace MovieRentalProgramProject
         private decimal moviePrice;
         private int copies;
 
-        //proprtes
+        //properties
         public string MovieName { get { return movieName; } set { movieName = value; } }
         public string ReleaseDate { get { return releaseDate; } set { releaseDate = value; } }
         public string GenreMovie { get { return genreMovie; } set { genreMovie = value; } }
@@ -28,7 +28,7 @@ namespace MovieRentalProgramProject
         public decimal MoviePrice { get { return moviePrice; } set { moviePrice = value; } }
         public int Copies { get { return copies; } set { copies = value; } }
 
-        //construtor
+        //constructor
         public Movie()
         {
 

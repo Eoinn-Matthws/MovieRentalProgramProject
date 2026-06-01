@@ -10,9 +10,19 @@ namespace MovieRentalProgramProject
     {
 
         List<Customer> customers = new List<Customer>();
+        // added customer login
+        // hardcoded customer login details for testing
+        // 1/6/26
+        public SignUpLogin()
+        {
+            customers.Add(new Customer("danny", "huang"));
+        }
 
+
+        
         public void SignUp()
         {
+
             Console.WriteLine();
             Console.WriteLine("Please enter a username");
             string username = Console.ReadLine();
@@ -46,16 +56,24 @@ namespace MovieRentalProgramProject
             }
             else 
             {
+                //Danny Huang
+                //1/6/2026
+                
                 foreach (Customer customer in customers)
                 {
                     if (customer.Username == username && customer.Password == password)
                     {
-                        Console.WriteLine();
+                        // Console.WriteLine("Please enter username: ");
+                       // string Username = Console.ReadLine();
+
+                       // Console.WriteLine("Please enter password: ");
+                        // string Password = Console.ReadLine();
                         customer.CustomerMenu();
+                        return;
                     }
                     else
-                    {
-                        Console.WriteLine("");
+                    {// if user enters a username or password not in the system
+                        Console.WriteLine("Invalid username or password");
                     }
                 }
             }

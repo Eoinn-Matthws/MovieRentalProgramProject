@@ -7,7 +7,8 @@
             //a Movie rental Project by Owen Matthews and Danny Huang.
 
             SignUpLogin login = new SignUpLogin();
-
+            //added constructor in reference to MovieList class
+            MovieList movieList = new MovieList();
             //Owen Matthews
             Console.WriteLine("----------- Movie Rental Program -----------");
             Console.WriteLine("--------------------------------------------");
@@ -33,7 +34,7 @@
                     case "3":
                         Console.WriteLine("");
                         Console.WriteLine("---------------- Thank you -----------------");
-                        Console.WriteLine("--------------------------------------------");
+                        Console.WriteLine("---------------- Goodbye!! -----------------");
                         Environment.Exit(0);
                         break;
                     default:

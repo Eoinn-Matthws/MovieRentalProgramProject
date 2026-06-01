@@ -84,9 +84,12 @@ namespace MovieRentalProgramProject
             decimal MoviePrice = Decimal.Parse(Console.ReadLine());
             Console.WriteLine("Enter the number of copies");
             int Copies = Int32.Parse(Console.ReadLine());
+
+            Movie movie = new Movie(MovieName, ReleaseDate, GenreMovie, ContentRating, MoviePrice, Copies); //unsure if this works at the moment
+            MovieList.movies.Add(movie);
             Console.WriteLine($"‘{MovieName}’ has been successfully added. ");
             Console.WriteLine();
-            Movie movie = new Movie(MovieName,ReleaseDate,GenreMovie,ContentRating,MoviePrice,Copies); //unsure if this works at the moment
+            
         }
 
 

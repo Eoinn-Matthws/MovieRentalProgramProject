@@ -16,7 +16,7 @@ namespace MovieRentalProgramProject
 
         //properties
         public string Username { get; set; }
-        public string Password {  get; set; }
+        public string Password { get; set; }
 
 
 
@@ -31,16 +31,100 @@ namespace MovieRentalProgramProject
             Password = password;
         }
 
-
+        // Danny Huang
+        // 1/6/2026
 
         public void CustomerMenu()
         {
-            Console.WriteLine("customer");
-        }
+            do
+            {
+                Console.WriteLine("----------- Movie Rentals Menu --------------");
+                Console.WriteLine("");
+                Console.WriteLine("1. Search for a movie");
+                Console.WriteLine("2. List a movie");
+                Console.WriteLine("3. Rent a movie");
+                Console.WriteLine("4. Checkout");
+                Console.WriteLine("5. List all movies");
+                Console.WriteLine("");
+                Console.WriteLine("99. Exit");
+                Console.WriteLine("--------------------------------------------");
+                Console.Write("Please enter an option: ");
+                string customerChoice = Console.ReadLine();
+
+                switch (customerChoice)
+                {
+                    case "1":
+                        CusMovie();
+                        break;
+                    case "2":
+                        Console.WriteLine();
+                        break;
+                    case "3":
+                        RentMovie();
+                        break;
+                    case "4":
+                        Console.WriteLine();
+                        break;
+                    case "5":
+                        Console.WriteLine();
+                        break;
+                    case "99":
+                        return;
+                        
+                    default:
+                        Console.WriteLine("Enter a vaild number");
+                        break;
+                }//end of switch
+            } while (true);
+
+        }//end of CustomerMenu
 
         //likey needs to be a child of Admin just for the search
         //this class relates to the Customer user and all their details
+        public void CusMovie()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Please enter the Title of the Movie");
+            string movieName = Console.ReadLine();
+
+            foreach (Movie movie in MovieList.movies)
+            {
+                if (movie.MovieName.ToLower() == movieName.ToLower())
+                {
+                    Console.WriteLine("Movie Found!");
+                    Console.WriteLine($"Title: {movie.MovieName}");
+                    Console.WriteLine($"Price: ${movie.MoviePrice}");
+                    Console.WriteLine($"Copies Available: {movie.Copies}");
+                    return;
+                }
+            }
+            //if movie is not found display this message to the user
+            Console.WriteLine("Movie not found.");
+        }
+
+        public static void RentMovie()
+        {
+            Console.Write("Enter the name of the movie you want to rent: ");
+            string movieToRent = Console.ReadLine();
+           
+
+            foreach (Movie movie in MovieList.movies)
+            {
+                if (movie.MovieName.ToLower() == movieToRent.ToLower())
+                {
+                    Console.WriteLine($"'{movie.MovieName}' costs ${movie.MoviePrice}");
+                    return;
+                }
+            }
+
+            Console.WriteLine("Movie not found.");
+        }
 
 
-    }
-}
+
+
+    }//end of customer class
+
+}//end of namespace
+
+
