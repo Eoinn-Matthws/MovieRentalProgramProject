@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Security.Authentication;
 using System.Text;
@@ -11,7 +12,7 @@ namespace MovieRentalProgramProject
     public class Customer
     {
         //Owen Matthews
-
+       
         //fields
         private string username;
         private string password;
@@ -48,31 +49,34 @@ namespace MovieRentalProgramProject
                 Console.WriteLine("4. Checkout");
                 Console.WriteLine("5. List all movies");
                 Console.WriteLine("");
-                Console.WriteLine("99. Exit");
+                Console.WriteLine("99. Log Out");
                 Console.WriteLine("--------------------------------------------");
                 Console.Write("Please enter an option: ");
                 string customerChoice = Console.ReadLine();
 
                 switch (customerChoice)
                 {
-                    case "1":
+                    case "1"://1/6
                         CusMovie();
                         break;
                     case "2":
                         Console.WriteLine();
                         break;
-                    case "3":
-                        RentMovie();
-                        break;
+                    case "3"://1/6 - if statement for boolean within RentMovie() method
+                        if (RentMovie())
+                        return;
+                      break;
                     case "4":
                         Console.WriteLine();
                         break;
-                    case "5":
-                        Console.WriteLine();
+                    case "5"://1/6
+                        ListAllMovies();
                         break;
                     case "99":
+                       
                         return;
-                        
+
+
                     default:
                         Console.WriteLine("Enter a vaild number");
                         break;
@@ -97,32 +101,91 @@ namespace MovieRentalProgramProject
                     Console.WriteLine($"Title: {movie.MovieName}");
                     Console.WriteLine($"Price: ${movie.MoviePrice}");
                     Console.WriteLine($"Copies Available: {movie.Copies}");
+                    Console.WriteLine("");
                     return;
                 }
             }
             //if movie is not found display this message to the user
             Console.WriteLine("Movie not found.");
         }
-
-        public static void RentMovie()
+        //Rent Movie method
+        public static bool RentMovie()
         {
             Console.Write("Enter the name of the movie you want to rent: ");
             string movieToRent = Console.ReadLine();
-           
+            string userInput;
+            string userInput2;
+            string userInput3;
 
             foreach (Movie movie in MovieList.movies)
             {
                 if (movie.MovieName.ToLower() == movieToRent.ToLower())
                 {
-                    Console.WriteLine($"'{movie.MovieName}' costs ${movie.MoviePrice}");
-                    return;
+                    Console.WriteLine($"'{movie.MovieName}'is available for rental, costs ${movie.MoviePrice}");
+                    Console.WriteLine($"Do you want to rent it? y/n");
+                    userInput = Console.ReadLine();
+
+                    if (userInput.ToLower() == "y")
+                    {
+                        Console.WriteLine($"That will be {movie.MoviePrice}. Are you sure? y/n");
+                        userInput2 = Console.ReadLine();
+
+                        if (userInput2.ToLower() == "y")
+                        {
+                            Console.WriteLine("Thanks for renting!");
+                            Console.WriteLine("Enjoy the movie!!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enjoy your day");
+                            Console.WriteLine("See you again!");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Enjoy your day");
+                        Console.WriteLine("See you again!");
+                    }
+
+                    return true;
+                       
                 }
+            }//end of foreach in RentMovie() method
+            
+                Console.WriteLine("Movie not found.");
+                Console.WriteLine("Do you want to search for another movie? y/n");
+                userInput3 = Console.ReadLine();
+
+            if (userInput3.ToLower() == "y")
+            {
+                RentMovie();
+            }
+            else
+            {
+                return true;
             }
 
-            Console.WriteLine("Movie not found.");
+            return false;
+        }//end of RentMovie() Method
+
+        
+        public static void ListAllMovies()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("----------- List of Movies --------------");
+
+            foreach (Movie movie in MovieList.movies)
+            {
+                Console.WriteLine($"Title: {movie.MovieName}");
+                Console.WriteLine($"Price: ${movie.MoviePrice}");
+                Console.WriteLine($"Copies Available: {movie.Copies}");
+                Console.WriteLine("");
+                
+            }
+
+            Console.WriteLine($"Total movies: {MovieList.movies.Count}");
+
         }
-
-
 
 
     }//end of customer class

@@ -57,7 +57,7 @@ namespace MovieRentalProgramProject
                         Console.WriteLine();
                         break;
                     case "5": //done
-                        ListMovie();
+                        Customer.ListAllMovies();
                         break;
                     case "99":
                         return;
@@ -91,7 +91,7 @@ namespace MovieRentalProgramProject
             MovieList.movies.Add(movie);
             Console.WriteLine($"‘{MovieName}’ has been successfully added. ");
             Console.WriteLine();
-            Movie movie = new Movie(MovieName,ReleaseDate,GenreMovie,ContentRating,MoviePrice,Copies); //unsure if this works at the moment
+            //Movie movie = new Movie(MovieName,ReleaseDate,GenreMovie,ContentRating,MoviePrice,Copies); //unsure if this works at the moment
         }
 
 
