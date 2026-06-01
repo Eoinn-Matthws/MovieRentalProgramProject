@@ -63,11 +63,7 @@ namespace MovieRentalProgramProject
                 {
                     if (customer.Username == username && customer.Password == password)
                     {
-                        // Console.WriteLine("Please enter username: ");
-                       // string Username = Console.ReadLine();
-
-                       // Console.WriteLine("Please enter password: ");
-                        // string Password = Console.ReadLine();
+                    
                         customer.CustomerMenu();
                         return;
                     }

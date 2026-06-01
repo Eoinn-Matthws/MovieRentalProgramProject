@@ -22,7 +22,7 @@ namespace MovieRentalProgramProject
         public string Password { get; set; }
 
 
-
+        public static List<Movie> rentedMovies = new List<Movie>();
         //construtor
         public Customer()
         {
@@ -57,17 +57,17 @@ namespace MovieRentalProgramProject
                 switch (customerChoice)
                 {
                     case "1"://1/6
-                        CusMovie();
+                        CusSearchMovie();
                         break;
                     case "2":
-                        Console.WriteLine();
+                        ListRandomMovie();//2/6
                         break;
                     case "3"://1/6 - if statement for boolean within RentMovie() method
                         if (RentMovie())
                         return;
                       break;
                     case "4":
-                        Console.WriteLine();
+                        CheckOut();
                         break;
                     case "5"://1/6
                         ListAllMovies();
@@ -87,7 +87,7 @@ namespace MovieRentalProgramProject
 
         //likey needs to be a child of Admin just for the search
         //this class relates to the Customer user and all their details
-        public void CusMovie()
+        public void CusSearchMovie()
         {
             Console.WriteLine("");
             Console.WriteLine("Please enter the Title of the Movie");
@@ -107,6 +107,29 @@ namespace MovieRentalProgramProject
             }
             //if movie is not found display this message to the user
             Console.WriteLine("Movie not found.");
+        }
+
+        public static void ListRandomMovie()
+        {
+
+            Console.WriteLine("");
+            Console.WriteLine("----------- List of Movie --------------");
+
+            //uses Random class that is built into C# 
+            //stores that into a variable called "random"
+            Random random = new Random();
+
+            //gets the number of movies in the list 
+            //random.Next generates a random number from the index/MovieList
+            int index = random.Next(MovieList.movies.Count);
+
+            //gets movie at that index number starting at 0
+            Movie movie = MovieList.movies[index];
+
+            //displays the movie
+            Console.WriteLine(movie);
+
+
         }
         //Rent Movie method
         public static bool RentMovie()
@@ -133,6 +156,8 @@ namespace MovieRentalProgramProject
 
                         if (userInput2.ToLower() == "y")
                         {
+                            rentedMovies.Add(movie);
+
                             Console.WriteLine("Thanks for renting!");
                             Console.WriteLine("Enjoy the movie!!");
                         }
@@ -167,7 +192,25 @@ namespace MovieRentalProgramProject
             
         }//end of RentMovie() Method
 
-        
+        public static void CheckOut()
+        {//condition if no movies in list rentedMovies
+            if (rentedMovies.Count == 0)
+            {
+                Console.WriteLine("No movies have been rented.");
+                return;
+            }
+
+            decimal totalCost = 0;
+
+            foreach (Movie movie in rentedMovies)
+            {
+                Console.WriteLine($"{movie.MovieName} - ${movie.MoviePrice}");
+                totalCost += movie.MoviePrice;
+            }
+
+            Console.WriteLine($"Total Cost: ${totalCost:F2}");
+        }
+
         public static void ListAllMovies()
         {
             Console.WriteLine("");
@@ -185,7 +228,7 @@ namespace MovieRentalProgramProject
             Console.WriteLine($"Total movies: {MovieList.movies.Count}");
 
         }
-
+       
 
     }//end of customer class
 

@@ -44,10 +44,13 @@ namespace MovieRentalProgramProject
             copies = Copies;
 
         }
+        // without this ToString method it displays "MovieRentalProgramProject.Movie"
+        public override string ToString()
+        {
+            return $"{movieName} ({releaseDate}) - {genreMovie} - Rating: {contentRating} - ${moviePrice} - Copies: {copies}";
+        }
 
-        
 
-        
 
 
     }//end of class Movie

@@ -2,13 +2,16 @@
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
             //a Movie rental Project by Owen Matthews and Danny Huang.
 
+
             SignUpLogin login = new SignUpLogin();
             //added constructor in reference to MovieList class
             MovieList movieList = new MovieList();
+
             //Owen Matthews
             Console.WriteLine("----------- Movie Rental Program -----------");
             Console.WriteLine("--------------------------------------------");
