@@ -47,7 +47,7 @@ namespace MovieRentalProgramProject
             Console.WriteLine("Please enter your password");
             string password = Console.ReadLine();
 
-            if (username == "admin" && password == "admin") //this is just to get an output will need to be changed 
+            if (username == "admin" && password == "admin") //this is just to get an output will need to be changed: EDIT: Might just be the one we use. -Owen 
             {
                 Console.WriteLine("");
                 Admin admin = new Admin();

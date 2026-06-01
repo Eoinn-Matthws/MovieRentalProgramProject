@@ -12,6 +12,8 @@ namespace MovieRentalProgramProject
         //this class relates to the Admin user
         //Owen Matthews
 
+        public List<Movie> movieDatabase = new List<Movie>();
+
         public Admin()
         {
 
@@ -22,7 +24,7 @@ namespace MovieRentalProgramProject
 
         }
 
-        
+
         public void AdminMenu()
         {
             do
@@ -42,7 +44,7 @@ namespace MovieRentalProgramProject
 
                 switch (adminChoice)
                 {
-                    case "1":
+                    case "1": //done
                         newMovie();
                         break;
                     case "2":
@@ -54,8 +56,8 @@ namespace MovieRentalProgramProject
                     case "4":
                         Console.WriteLine();
                         break;
-                    case "5":
-                        Console.WriteLine();
+                    case "5": //done
+                        ListMovie();
                         break;
                     case "99":
                         return;
@@ -64,12 +66,12 @@ namespace MovieRentalProgramProject
                         Console.WriteLine("Enter a vaild number");
                         break;
                 }//end of switch
-            }while (true);
+            } while (true);
 
         }//end of AdminMenu
 
 
-        public static void newMovie()
+        public void newMovie()
         {
             Console.WriteLine("");
             Console.WriteLine("Enter the Title of the Movie");
@@ -89,8 +91,10 @@ namespace MovieRentalProgramProject
             MovieList.movies.Add(movie);
             Console.WriteLine($"‘{MovieName}’ has been successfully added. ");
             Console.WriteLine();
-            
+            Movie movie = new Movie(MovieName,ReleaseDate,GenreMovie,ContentRating,MoviePrice,Copies); //unsure if this works at the moment
         }
+
+
 
 
     }//end of class Admin
