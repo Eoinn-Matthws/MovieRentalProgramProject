@@ -125,6 +125,7 @@ namespace MovieRentalProgramProject
                     Console.WriteLine($"Do you want to rent it? y/n");
                     userInput = Console.ReadLine();
 
+
                     if (userInput.ToLower() == "y")
                     {
                         Console.WriteLine($"That will be {movie.MoviePrice}. Are you sure? y/n");
@@ -148,7 +149,6 @@ namespace MovieRentalProgramProject
                     }
 
                     return true;
-                       
                 }
             }//end of foreach in RentMovie() method
             
@@ -158,14 +158,13 @@ namespace MovieRentalProgramProject
 
             if (userInput3.ToLower() == "y")
             {
-                RentMovie();
+                return RentMovie();
             }
             else
-            {
+            {// if boolean is true it will go back to do while loop 
                 return true;
             }
-
-            return false;
+            
         }//end of RentMovie() Method
 
         
