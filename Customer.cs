@@ -57,7 +57,7 @@ namespace MovieRentalProgramProject
                 switch (customerChoice)
                 {
                     case "1"://1/6
-                        Movie.CusSearchMovie();
+                        Movie.SearchMovie();
                         break;
                     case "2":
                         Movie.ListRandomMovie();//2/6
@@ -85,8 +85,6 @@ namespace MovieRentalProgramProject
 
         }//end of CustomerMenu
 
-        //likey needs to be a child of Admin just for the search
-        //this class relates to the Customer user and all their details
         
         public static void CheckOut()
         {//condition if no movies in list rentedMovies

@@ -52,7 +52,7 @@ namespace MovieRentalProgramProject
         {
             return $"{movieName} ({releaseDate}) - {genreMovie} - Rating: {contentRating} - ${moviePrice} - Copies: {copies}";
         }
-        public static void CusSearchMovie()
+        public static void SearchMovie()
         {
             Console.WriteLine("");
             Console.WriteLine("Please enter the Title of the Movie");
