@@ -57,7 +57,7 @@ namespace MovieRentalProgramProject
                         Console.WriteLine();
                         break;
                     case "5": //done
-                        Customer.ListAllMovies();
+                        Movie.ListAllMovies();
                         break;
                     case "99":
                         return;

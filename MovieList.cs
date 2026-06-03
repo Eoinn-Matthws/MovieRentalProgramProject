@@ -32,7 +32,7 @@ namespace MovieRentalProgramProject
             movies.Add(movie);
 
         }
+        
 
-      
     }//end of class MovieList
 }
