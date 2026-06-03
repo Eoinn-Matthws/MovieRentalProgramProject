@@ -89,35 +89,26 @@ namespace MovieRentalProgramProject
                 if (movie.MovieName.ToLower() == movieToRent.ToLower())
                 {
                     Console.WriteLine($"'{movie.MovieName}'is available for rental, costs ${movie.MoviePrice}");
-                    Console.WriteLine($"Do you want to rent it? y/n");
+                    Console.WriteLine($"Do you want to put it into cart? y/n");
                     userInput = Console.ReadLine();
 
 
                     if (userInput.ToLower() == "y")
                     {
-                        Console.WriteLine($"That will be {movie.MoviePrice}. Are you sure? y/n");
-                        userInput2 = Console.ReadLine();
 
-                        if (userInput2.ToLower() == "y")
-                        {
-                           rentedMovies.Add(movie);
 
-                            Console.WriteLine("Thanks for renting!");
-                            Console.WriteLine("Enjoy the movie!!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Enjoy your day");
-                            Console.WriteLine("See you again!");
-                        }
+                        Customer.cart.Add(movie);
+
+                        Console.WriteLine($"{movie.MovieName} added to cart.");
+                        //Console.WriteLine($"That will be {movie.MoviePrice}. Are you sure? y/n");
+                        //userInput2 = Console.ReadLine();
+
                     }
                     else
                     {
-                        Console.WriteLine("Enjoy your day");
-                        Console.WriteLine("See you again!");
+                        return true;
                     }
 
-                    return true;
                 }
             }//end of foreach in RentMovie() method
 
