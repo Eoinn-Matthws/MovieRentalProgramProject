@@ -44,9 +44,9 @@ namespace MovieRentalProgramProject
                 Console.WriteLine("----------- Movie Rentals Menu --------------");
                 Console.WriteLine("");
                 Console.WriteLine("1. Search for a movie");
-                Console.WriteLine("2. List a movie");
+                Console.WriteLine("2. List random movie");
                 Console.WriteLine("3. Rent a movie");
-                Console.WriteLine("4. Checkout");
+                Console.WriteLine("4. View cart");
                 Console.WriteLine("5. List all movies");
                 Console.WriteLine("");
                 Console.WriteLine("99. Log Out");
@@ -57,7 +57,11 @@ namespace MovieRentalProgramProject
                 switch (customerChoice)
                 {
                     case "1"://1/6
-                        Movie.SearchMovie();
+                        do
+                        {
+                            Movie.SearchMovie();
+                        } 
+                        while (ContinueSearch());
                         break;
                     case "2":
                         Movie.ListRandomMovie();//2/6
@@ -67,15 +71,13 @@ namespace MovieRentalProgramProject
                         return;
                         break;
                     case "4":
-                        CheckOut();
+                        ViewCart();
                         break;
                     case "5"://1/6
                        Movie.ListAllMovies();
                         break;
-                    case "99":
-                       
+                    case "99":                    
                         return;
-
 
                     default:
                         Console.WriteLine("Enter a vaild number");
@@ -86,27 +88,116 @@ namespace MovieRentalProgramProject
         }//end of CustomerMenu
 
         
-        public static void CheckOut()
+        public static void ViewCart()
         {//condition if no movies in list rentedMovies
             if (rentedMovies.Count == 0)
             {
-                Console.WriteLine("No movies have been rented.");
+                Console.WriteLine("Cart is empty");
                 return;
             }
+            Console.WriteLine("");
+            Console.WriteLine($"In Cart: {rentedMovies.Count}");
 
             decimal totalCost = 0;
 
             foreach (Movie movie in rentedMovies)
             {
+                
                 Console.WriteLine($"{movie.MovieName} - ${movie.MoviePrice}");
                 totalCost += movie.MoviePrice;
             }
 
             Console.WriteLine($"Total Cost: ${totalCost:F2}");
-        }
+            Console.WriteLine($"Do you want to check out? (y/n)");
+            string userInput = Console.ReadLine().ToLower();
 
-       
-       
+            if (userInput == "y")
+            {
+                CheckOut();
+                return;
+            }
+                else if (userInput == "n")
+                {
+                    Console.WriteLine($"Returning to menu...");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid input. Returning to menu...");
+                    return;
+            }
+        }
+        public static void CheckOut()
+        {
+                decimal totalCost = 0;
+    
+                foreach (Movie movie in rentedMovies)
+                {
+                    totalCost += movie.MoviePrice;
+                }
+    
+                //Console.WriteLine($"Total Cost: ${totalCost:F2}");
+                Console.WriteLine($"Thank you for your purchase!");
+                //clears the cart after checkout
+                rentedMovies.Clear();
+        }
+        //method for customer confirmation of adding movie to cart
+        public static void CusCartConfirm(Movie movie)
+        {
+            string userInput;
+
+            //do while loop to validate user input for adding movie to cart until user input is either "y" or "n"
+            do
+            {
+
+                Console.WriteLine($"Do you want to put movie into cart? (y/n)");
+                //.ToLower () converts inputted field to lower case letters therefore making it case-insensitive
+                userInput = Console.ReadLine().ToLower();
+
+                if (userInput == "y")
+                {
+                    rentedMovies.Add(movie);
+                    Console.WriteLine($"Added to cart");
+                    break;
+                }
+                else if (userInput == "n")
+                {
+                    Console.WriteLine($"Movie not added to cart");
+                
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid input. Please enter 'y' or 'n'.");
+                }
+
+
+            } while (userInput != "y" && userInput != "n");
+        }
+        public static bool ContinueSearch()
+        {//initialize the string variable
+            string userInput;
+
+            do
+            {
+                Console.WriteLine("Do you want to search for another movie? (y/n)");
+                userInput = Console.ReadLine().ToLower();
+
+                if (userInput == "y")
+                {
+                    return true;
+                }
+                else if (userInput == "n")
+                {
+                    return false;
+                } 
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter y or n.");
+                }
+
+            } while (true);
+        }
+        
 
     }//end of customer class
 

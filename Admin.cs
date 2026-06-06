@@ -55,7 +55,7 @@ namespace MovieRentalProgramProject
                         UpdateMovie();
                         break;
                     case "4":
-                        Movie.SearchMovie();
+                        AdminSearchMovie();
                         break;
                     case "5": //done
                         Movie.ListAllMovies();
@@ -120,7 +120,41 @@ namespace MovieRentalProgramProject
 
         }//end of UpdateMovie
 
+        public static void AdminSearchMovie()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Please enter the Title of the Movie");
+            string movieName = Console.ReadLine();
+            //initialize bool variable for false
+            bool found = false;
 
+            foreach (Movie movie in MovieList.movies)
+            {
+                //Console.WriteLine($"DEBUG: '{movie.MovieName}'");
+                if (movie.MovieName.ToLower() == movieName.ToLower())
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Movie Found!");
+                    Console.WriteLine($"Title: {movie.MovieName}");
+                    Console.WriteLine($"Price: ${movie.MoviePrice}");
+                    Console.WriteLine($"Copies Available: {movie.Copies}");
+                    Console.WriteLine("");
+                
+                    //once found is true it will break out of the loop 
+                    found = true;
+                    break;
+                }
+
+
+            }
+            if (!found)
+            {
+                Console.WriteLine("Movie not found.");
+                found = true;
+
+            }
+
+        }
 
 
 

@@ -57,21 +57,36 @@ namespace MovieRentalProgramProject
             Console.WriteLine("");
             Console.WriteLine("Please enter the Title of the Movie");
             string movieName = Console.ReadLine();
+            //initialize bool variable for false
+            bool found = false;
 
             foreach (Movie movie in MovieList.movies)
             {
+                //Console.WriteLine($"DEBUG: '{movie.MovieName}'");
                 if (movie.MovieName.ToLower() == movieName.ToLower())
                 {
+                    Console.WriteLine("");
                     Console.WriteLine("Movie Found!");
                     Console.WriteLine($"Title: {movie.MovieName}");
                     Console.WriteLine($"Price: ${movie.MoviePrice}");
                     Console.WriteLine($"Copies Available: {movie.Copies}");
                     Console.WriteLine("");
-                    return;
+                    //calls method from Customer class to confirm if they want to add it to their cart
+                    Customer.CusCartConfirm(movie);
+                    //once found is true it will break out of the loop and not display "Movie not found"
+                    found = true;
+                    break;
                 }
+
+                
             }
-            //if movie is not found display this message to the user
-            Console.WriteLine("Movie not found.");
+            if (!found)
+            {
+                Console.WriteLine("Movie not found.");
+                found = true;
+                
+            }
+
         }
 
         
@@ -140,8 +155,8 @@ namespace MovieRentalProgramProject
         {
 
             Console.WriteLine("");
-            Console.WriteLine("----------- List a Movie --------------");
-
+            Console.WriteLine("----------- Random Movie --------------");
+           
             //for debugging
             //Console.WriteLine($"Movie count = {MovieList.movies.Count}");
 
@@ -158,13 +173,13 @@ namespace MovieRentalProgramProject
 
             //displays the movie
             Console.WriteLine(movie);
-
+            Console.WriteLine("");
 
         }
         public static void ListAllMovies()
         {
             Console.WriteLine("");
-            Console.WriteLine("----------- List of Movies --------------");
+            Console.WriteLine("----------- List of all Movies --------------");
 
             foreach (Movie movie in MovieList.movies)
             {
