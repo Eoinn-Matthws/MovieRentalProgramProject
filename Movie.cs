@@ -54,6 +54,7 @@ namespace MovieRentalProgramProject
         }
         public static void SearchMovie()
         {
+            Console.WriteLine("----------- Search a Movie --------------");
             Console.WriteLine("");
             Console.WriteLine("Please enter the Title of the Movie");
             string movieName = Console.ReadLine();
@@ -91,8 +92,9 @@ namespace MovieRentalProgramProject
 
         
         //Rent Movie method
-        public static bool RentMovie()
+        public static void RentMovie()
         {
+
             Console.Write("Enter the name of the movie you want to rent: ");
             string movieToRent = Console.ReadLine();
             string userInput;
@@ -105,50 +107,22 @@ namespace MovieRentalProgramProject
                 {
                     Console.WriteLine($"'{movie.MovieName}'is available for rental, costs ${movie.MoviePrice}");
                     Console.WriteLine($"Do you want to rent it? y/n");
-                    userInput = Console.ReadLine();
-
+                    userInput = Console.ReadLine().ToLower();
 
                     if (userInput.ToLower() == "y")
                     {
-                        Console.WriteLine($"That will be {movie.MoviePrice}. Are you sure? y/n");
-                        userInput2 = Console.ReadLine();
+                        rentedMovies.Add(movie);
+                        Console.WriteLine($"Added to cart!");
 
-                        if (userInput2.ToLower() == "y")
-                        {
-                           rentedMovies.Add(movie);
-
-                            Console.WriteLine("Thanks for renting!");
-                            Console.WriteLine("Enjoy the movie!!");
-                        }
-                        else
-                        {
-                            Console.WriteLine("Enjoy your day");
-                            Console.WriteLine("See you again!");
-                        }
                     }
                     else
                     {
-                        Console.WriteLine("Enjoy your day");
-                        Console.WriteLine("See you again!");
+                        Console.WriteLine("Movie not added to cart");
+                        return;
                     }
-
-                    return true;
+                
                 }
             }//end of foreach in RentMovie() method
-
-
-            Console.WriteLine("Movie not found.");
-            Console.WriteLine("Do you want to search for another movie? y/n");
-            userInput3 = Console.ReadLine();
-
-            if (userInput3.ToLower() == "y")
-            {
-                return RentMovie();
-            }
-            else
-            {// if boolean is true it will go back to do while loop 
-                return true;
-            }
 
         }//end of RentMovie() Method
         public static void ListRandomMovie()

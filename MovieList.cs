@@ -21,9 +21,11 @@ namespace MovieRentalProgramProject
             //hardcoded for testing purposes
             //m = stores as a decimal value
             movies.Add(new Movie("Dark Knight", "24-07-2008", "Action", "M", 5.50m, 5));
-            movies.Add(new Movie("John Wick", "27-11-2014", "Action/Thriller", "R16", 6.50m, 8));
+            movies.Add(new Movie("John Wick", "27-11-2014", "Action/Thriller", "R16", 8.50m, 8));
             movies.Add(new Movie("The Matrix", "08-04-1999", "Action/Sci-fi", "M", 6.50m, 8));
             movies.Add(new Movie("The Lord of the Rings: The Return of the King", "03-12-2003", "Action/Fantasy", "M", 6.50m, 8));
+            movies.Add(new Movie("Alien", "24-01-1980", "Horror/Sci-fi", "R", 4.50m, 6));
+            movies.Add(new Movie("Avatar", "18-12-2009", "Action/Adventure", "M", 7.50m, 8));
             //Owen Matthews /03/06/2026
             movies.Add(new Movie("Dr No", "06-09-1962", "Spy/Action", "PG", 3.40m, 10));
             movies.Add(new Movie("Life of Brian", "08-11-1979", "Comedy/Satire", "M", 6.50m, 3));
