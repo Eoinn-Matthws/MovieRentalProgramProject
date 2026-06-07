@@ -14,7 +14,7 @@ namespace MovieRentalProgramProject
         //Owen Matthews
         //fields
         private string movieName;
-        private string releaseDate;
+        private DateOnly releaseDate;
         private string genreMovie;
         private string contentRating;
         private decimal moviePrice;
@@ -25,7 +25,7 @@ namespace MovieRentalProgramProject
         public static List<Movie> rentedMovies = new List<Movie>();
         //properties
         public string MovieName { get { return movieName; } set { movieName = value; } }
-        public string ReleaseDate { get { return releaseDate; } set { releaseDate = value; } }
+        public DateOnly ReleaseDate { get { return releaseDate; } set { releaseDate = value; } }
         public string GenreMovie { get { return genreMovie; } set { genreMovie = value; } }
         public string ContentRating { get { return contentRating; } set { contentRating = value; } }
         public decimal MoviePrice { get { return moviePrice; } set { moviePrice = value; } }
@@ -37,7 +37,7 @@ namespace MovieRentalProgramProject
 
         }
 
-        public Movie(string MovieName, string ReleaseDate, string GenreMovie, string ContentRating, decimal MoviePrice, int Copies)
+        public Movie(string MovieName, DateOnly ReleaseDate, string GenreMovie, string ContentRating, decimal MoviePrice, int Copies)
         {
             movieName = MovieName;
             releaseDate = ReleaseDate;
@@ -105,7 +105,7 @@ namespace MovieRentalProgramProject
             {// .ToLower() converts inputted field to lower case letters therefore making it case-insensitive
                 if (movie.MovieName.ToLower() == movieToRent.ToLower())
                 {
-                    Console.WriteLine($"'{movie.MovieName}'is available for rental, costs ${movie.MoviePrice}");
+                    Console.WriteLine($"'{movie.MovieName}' is available for rental, costs ${movie.MoviePrice}");
                     Console.WriteLine($"Do you want to rent it? y/n");
                     userInput = Console.ReadLine().ToLower();
 
@@ -158,6 +158,9 @@ namespace MovieRentalProgramProject
             foreach (Movie movie in MovieList.movies)
             {
                 Console.WriteLine($"Title: {movie.MovieName}");
+                Console.WriteLine($"Release date: {movie.ReleaseDate}");
+                Console.WriteLine($"Genre: {movie.GenreMovie}");
+                Console.WriteLine($"Content Rating: {movie.ContentRating}");
                 Console.WriteLine($"Price: ${movie.MoviePrice}");
                 Console.WriteLine($"Copies Available: {movie.Copies}");
                 Console.WriteLine("");

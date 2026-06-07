@@ -203,7 +203,7 @@ namespace MovieRentalProgramProject
                 }
                 else if (userInput == "n")
                 {
-                    Console.WriteLine("Have a good day!");
+                    Console.WriteLine("Have a good day!"); //This should be different - Owen 07/06/2026
                     return false;
                 } 
                 else

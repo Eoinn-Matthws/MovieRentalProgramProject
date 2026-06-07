@@ -51,7 +51,7 @@ namespace MovieRentalProgramProject
                     case "2": //done
                         RemoveMovie();
                         break;
-                    case "3": //not working
+                    case "3": //done
                         UpdateMovie();
                         break;
                     case "4":
@@ -74,25 +74,31 @@ namespace MovieRentalProgramProject
 
         public void NewMovie()
         {
-            Console.WriteLine("----------- Adding a New Movie --------------");
-            Console.WriteLine("");
-            Console.WriteLine("Enter the Title of the Movie");
-            string MovieName = Console.ReadLine();
-            Console.WriteLine("Enter the release date of the movie (dd-mm-yyyy)");
-            string ReleaseDate = Console.ReadLine();
-            Console.WriteLine("Enter the genre of the movie");
-            string GenreMovie = Console.ReadLine();
-            Console.WriteLine("Enter the content rating of the movie (G/PG/M/R18");
-            string ContentRating = Console.ReadLine();
-            Console.WriteLine("Enter the price of the movie");
-            decimal MoviePrice = Decimal.Parse(Console.ReadLine());
-            Console.WriteLine("Enter the number of copies");
-            int Copies = Int32.Parse(Console.ReadLine());
+            try {
+                Console.WriteLine("----------- Adding a New Movie --------------");
+                Console.WriteLine("");
+                Console.WriteLine("Enter the Title of the Movie");
+                string MovieName = Console.ReadLine();
+                Console.WriteLine("Enter the release date of the movie (dd-mm-yyyy)");
+                DateOnly ReleaseDate = DateOnly.Parse(Console.ReadLine()); //changed to DateTime so it actually is stored as a date
+                Console.WriteLine("Enter the genre of the movie");
+                string GenreMovie = Console.ReadLine();
+                Console.WriteLine("Enter the content rating of the movie (G/PG/M/R18");
+                string ContentRating = Console.ReadLine();
+                Console.WriteLine("Enter the price of the movie");
+                decimal MoviePrice = Decimal.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the number of copies");
+                int Copies = Int32.Parse(Console.ReadLine());
 
-            Movie movie = new Movie(MovieName, ReleaseDate, GenreMovie, ContentRating, MoviePrice, Copies);
-            MovieList.movies.Add(movie);
-            Console.WriteLine($"‘{MovieName}’ has been successfully added. ");
-            Console.WriteLine();
+                Movie movie = new Movie(MovieName, ReleaseDate, GenreMovie, ContentRating, MoviePrice, Copies);
+                MovieList.movies.Add(movie);
+                Console.WriteLine($"‘{MovieName}’ has been successfully added. ");
+                Console.WriteLine();
+            }
+            catch (Exception e)
+            { 
+                Console.WriteLine(e.Message);
+            }
             //Movie movie = new Movie(MovieName,ReleaseDate,GenreMovie,ContentRating,MoviePrice,Copies); //unsure if this works at the moment
         }//end of NewMovie
 
@@ -112,9 +118,122 @@ namespace MovieRentalProgramProject
             
         }//end of RemoveMovie
 
+        //Owen Matthews
+        //07-06-2026
         public void UpdateMovie()
         {
-            //unsure how to do this at the moment
+            Console.WriteLine("----------- Update Movie --------------");
+            Console.WriteLine();
+            Console.WriteLine("Please select the movie to be update");
+            string movieToUpdate= Console.ReadLine();
+            // finds the movie in the list
+            Movie updateMovie = MovieList.movies.Find(u=> u.MovieName.Equals(movieToUpdate,StringComparison.OrdinalIgnoreCase));
+
+            if (updateMovie == null)
+            {
+                Console.WriteLine($"'{movieToUpdate}' not found ");
+                return;
+            }
+
+            if (updateMovie != null)
+            {
+                
+                Console.WriteLine("1. Title");
+                Console.WriteLine("2. Release Date");
+                Console.WriteLine("3. Genre");
+                Console.WriteLine("4. Content Rating");
+                Console.WriteLine("5. Price");
+                Console.WriteLine("6. Copies");
+                Console.WriteLine("Please enter which part of the movies details to update");
+                string updateChoice = Console.ReadLine();
+                switch (updateChoice)
+                {
+                    case "1":
+                    {
+                        Console.WriteLine($"Current title: {updateMovie.MovieName}");
+                        Console.WriteLine("Enter the new title");
+                        updateMovie.MovieName = Console.ReadLine();
+                        Console.WriteLine("Successfully updated the title");
+                        break;
+                    }//end of case 1
+
+                    case "2":
+                    {
+                        Console.WriteLine($"Current release date: {updateMovie.ReleaseDate}");
+                        Console.WriteLine("Enter the new release date (dd-mm-yyyy)");
+                        //this checks if the date is vaild and if not it will fail. it works like a Try statement but less memory is used and easier to write.
+                        if (DateOnly.TryParse(Console.ReadLine(), out DateOnly updateDate))
+                        {
+                            updateMovie.ReleaseDate = updateDate;
+                            Console.WriteLine("Successfully updated the release date");
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Update failed: Invalid date format");
+                        }
+                        break;
+                    }//end of case 2
+                    case "3":
+                    {
+                        Console.WriteLine($"Current genre: {updateMovie.GenreMovie}");
+                        Console.WriteLine("Enter the new genre");
+                        updateMovie.GenreMovie = Console.ReadLine();
+                        Console.WriteLine("Successfully updated the genre");
+                        break;
+                    }//end of case 3
+                    case "4":
+                    {
+                        Console.WriteLine($"Current content rating: {updateMovie.ContentRating}");
+                        Console.WriteLine("Enter the new content rating");
+                        updateMovie.ContentRating = Console.ReadLine();
+                        Console.WriteLine("Successfully updated the content rating");
+                        break;
+                    }//end of case 4
+                    case "5":
+                    {
+                        Console.WriteLine($"Current price: ${updateMovie.MoviePrice}");
+                        Console.WriteLine("Enter the new price");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal updatePrice))
+                        {
+                            updateMovie.MoviePrice = updatePrice;
+                            Console.WriteLine("Successfully updated the price");
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Update failed: Invalid price");
+                        }
+                        break;
+
+                    }//end of case 5
+                    case "6":
+                    {
+                        Console.WriteLine($"Current amount of copies : {updateMovie.Copies}");
+                        Console.WriteLine("Enter the new amount of copies");
+                        if (int.TryParse(Console.ReadLine(), out int updateCopies))
+                        {
+                            updateMovie.Copies = updateCopies;
+                            Console.WriteLine("Successfully updated the amount of copies");
+
+                        }
+                        else
+                        {
+                            Console.WriteLine("Update failed: Invalid input");
+                        }
+                        break;
+                           
+                    }//end of case 6
+                    default:
+                    {
+                            Console.WriteLine("Invalid option");
+                            break;
+                    }//end of default
+
+                }
+
+            }
+            
 
 
 
@@ -122,6 +241,7 @@ namespace MovieRentalProgramProject
 
         public static void AdminSearchMovie()
         {
+            Console.WriteLine("----------- Movie Search --------------");
             Console.WriteLine("");
             Console.WriteLine("Please enter the Title of the Movie");
             string movieName = Console.ReadLine();
@@ -136,6 +256,8 @@ namespace MovieRentalProgramProject
                     Console.WriteLine("");
                     Console.WriteLine("Movie Found!");
                     Console.WriteLine($"Title: {movie.MovieName}");
+                    Console.WriteLine($"Release date: {movie.ReleaseDate}");
+                    Console.WriteLine($"Genre: {movie.GenreMovie}");
                     Console.WriteLine($"Price: ${movie.MoviePrice}");
                     Console.WriteLine($"Copies Available: {movie.Copies}");
                     Console.WriteLine("");
