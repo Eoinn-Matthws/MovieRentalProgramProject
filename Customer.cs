@@ -12,7 +12,7 @@ namespace MovieRentalProgramProject
     public class Customer
     {
         //Owen Matthews
-       
+
         //fields
         private string username;
         private string password;
@@ -62,7 +62,7 @@ namespace MovieRentalProgramProject
                         {
                             //Program.DisplayBackOption();
                             Movie.SearchMovie();
-                        } 
+                        }
                         while (ContinueSearch());
                         break;
                     case "2":
@@ -71,7 +71,7 @@ namespace MovieRentalProgramProject
                     case "3":
                         do
                         {
-                          Movie.RentMovie();
+                            Movie.RentMovie();
                         } while (ContinueSearch());
                         break;
                     case "4":
@@ -82,9 +82,9 @@ namespace MovieRentalProgramProject
                         RemoveMovieCart();
                         break;
                     case "6"://1/6
-                       Movie.ListAllMovies();
+                        Movie.ListAllMovies();
                         break;
-                    case "99":                    
+                    case "99":
                         return;
 
                     default:
@@ -95,7 +95,7 @@ namespace MovieRentalProgramProject
 
         }//end of CustomerMenu
 
-        
+
         public static void ViewCart()
         {//condition if no movies in list rentedMovies
 
@@ -112,7 +112,7 @@ namespace MovieRentalProgramProject
 
             foreach (Movie movie in rentedMovies)
             {
-                
+
                 Console.WriteLine($"{movie.MovieName} - ${movie.MoviePrice}");
                 totalCost += movie.MoviePrice;
             }
@@ -126,15 +126,15 @@ namespace MovieRentalProgramProject
                 CheckOut();
                 return;
             }
-                else if (userInput == "n")
-                {
-                    Console.WriteLine($"Returning to menu...");
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine($"Invalid input. Returning to menu...");
-                    return;
+            else if (userInput == "n")
+            {
+                Console.WriteLine($"Returning to menu...");
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"Invalid input. Returning to menu...");
+                return;
             }
         }//end of viewCart method
 
@@ -142,16 +142,16 @@ namespace MovieRentalProgramProject
         {
             Console.WriteLine("----------- Check Out --------------");
             decimal totalCost = 0;
-    
-                foreach (Movie movie in rentedMovies)
-                {
-                    totalCost += movie.MoviePrice;
-                }
-    
-                //Console.WriteLine($"Total Cost: ${totalCost:F2}");
-                Console.WriteLine($"Thank you for your purchase!");
-                //clears the cart after checkout
-                rentedMovies.Clear();
+
+            foreach (Movie movie in rentedMovies)
+            {
+                totalCost += movie.MoviePrice;
+            }
+
+            //Console.WriteLine($"Total Cost: ${totalCost:F2}");
+            Console.WriteLine($"Thank you for your purchase!");
+            //clears the cart after checkout
+            rentedMovies.Clear();
         }// end of CheckOut method
 
         //method for customer confirmation of adding movie to cart
@@ -169,16 +169,14 @@ namespace MovieRentalProgramProject
 
                 if (userInput == "y")
                 {
-                    rentedMovies.Add(movie);
-                    Console.WriteLine($"Added to cart!");
-                    Console.WriteLine($"Cart Count: {rentedMovies.Count}");
+                    DecreaseStock(movie);
                     break;
                 }
                 else if (userInput == "n")
                 {
                     Console.WriteLine($"Movie not added to cart");
-                
-                }
+
+                }//else if user inputs anything other than "y" or "n" do this
                 else
                 {
                     Console.WriteLine($"Invalid input. Please enter 'y' or 'n'.");
@@ -203,9 +201,10 @@ namespace MovieRentalProgramProject
                 }
                 else if (userInput == "n")
                 {
-                    Console.WriteLine("Have a good day!"); //This should be different - Owen 07/06/2026
+                    Console.WriteLine($"");
+                    Console.WriteLine("Back to Main menu..."); //This should be different - Owen 07/06/2026
                     return false;
-                } 
+                }
                 else
                 {
                     Console.WriteLine("Invalid input. Please enter y or n.");
@@ -218,16 +217,52 @@ namespace MovieRentalProgramProject
         {
             Console.WriteLine("----------- Removing a Movie --------------");
             Console.WriteLine("Enter the name of the movie you want to remove from cart");
-                string movieToRemove = Console.ReadLine().ToLower();
-                Movie movieRemove = MovieList.movies.Find(m => m.MovieName.Equals(movieToRemove, StringComparison.OrdinalIgnoreCase));
+            string movieToRemove = Console.ReadLine().ToLower();
+            Movie movieRemove = MovieList.movies.Find(m => m.MovieName.Equals(movieToRemove, StringComparison.OrdinalIgnoreCase));
 
-            if (movieToRemove != null)
-                {
-                    rentedMovies.Remove(movieRemove);
-                    Console.WriteLine($"'{movieToRemove}' has been removed from your cart.");
-                }
+            if (movieRemove != null)
+            {
+                IncreaseStock(movieRemove);
+                
+            }
+            else
+            {
+                Console.WriteLine("Movie not found.");
+            }
+        }//end of RemoveMovieCart method
 
-        }//end of RemoveMovieCart
+        public static void DecreaseStock(Movie movie)
+        {
+            //if inside a if to check if there are more than 0 copies of the movie
+            if (movie.Copies > 0)
+            {//add a movie into the rentedMovies list
+                rentedMovies.Add(movie);
+                //decrease the stock of the movie by 1 using the "Copies"property within the movie class
+                movie.Copies--;
+
+                Console.WriteLine("Added to cart!");
+                Console.WriteLine($"Cart Count: {rentedMovies.Count}");
+                Console.WriteLine($"Copies Remaining: {movie.Copies}");
+            }
+            //else if movies are 0 or less then it will display out of stock message and not add to cart
+            else
+            {
+                Console.WriteLine("Sorry, this movie is out of stock.");
+            }
+            //break out of the if statement or condition and go down into next line of code
+
+        }
+
+        public static void IncreaseStock(Movie movie)
+        {//remove a movie within the rentedMovies list
+            rentedMovies.Remove(movie);
+            //increase the stock of the movie by 1 using the "Copies" property within the movie class
+            movie.Copies++;
+
+            Console.WriteLine($"A copy of '{movie.MovieName}' has been successfully removed from your cart.");
+            Console.WriteLine($"Copies Available: {movie.Copies}");
+        }   
+        
 
     }//end of customer class
 

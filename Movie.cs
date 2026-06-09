@@ -111,7 +111,7 @@ namespace MovieRentalProgramProject
 
                     if (userInput.ToLower() == "y")
                     {
-                        rentedMovies.Add(movie);
+                        Customer.rentedMovies.Add(movie);
                         Console.WriteLine($"Added to cart!");
 
                     }
@@ -169,7 +169,10 @@ namespace MovieRentalProgramProject
 
             Console.WriteLine($"Total movies: {MovieList.movies.Count}");
 
-        }
+        
 
+       
+
+        }
     }//end of class Movie
 }//end of namespace
