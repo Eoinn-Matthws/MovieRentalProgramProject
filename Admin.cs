@@ -39,7 +39,8 @@ namespace MovieRentalProgramProject
                 Console.WriteLine("3. Update a Movies details");
                 Console.WriteLine("4. Search for a Movies");
                 Console.WriteLine("5. List all Movies");
-                Console.WriteLine("99. Exit");
+                Console.WriteLine();
+                Console.WriteLine("99. Logout");
                 Console.Write("Please enter an option: ");
                 string adminChoice = Console.ReadLine();
 
@@ -104,18 +105,24 @@ namespace MovieRentalProgramProject
 
         public void RemoveMovie()
         {
-            Console.WriteLine("----------- Removing a Movie --------------");
-            Console.WriteLine();
-            Console.WriteLine("Enter the name of the Movie that will be removed");
-            string removeMovieName = Console.ReadLine();
-            Movie movieRemove = MovieList.movies.Find(m=> m.MovieName.Equals(removeMovieName,StringComparison.OrdinalIgnoreCase));
-
-            if (movieRemove != null)
+            try
             {
-                MovieList.movies.Remove(movieRemove);
-                Console.WriteLine($"{movieRemove.MovieName} was removed");
+                Console.WriteLine("----------- Removing a Movie --------------");
+                Console.WriteLine();
+                Console.WriteLine("Enter the name of the Movie that will be removed");
+                string removeMovieName = Console.ReadLine();
+                Movie movieRemove = MovieList.movies.Find(m => m.MovieName.Equals(removeMovieName, StringComparison.OrdinalIgnoreCase));
+
+                if (movieRemove != null)
+                {
+                    MovieList.movies.Remove(movieRemove);
+                    Console.WriteLine($"{movieRemove.MovieName} was removed");
+                }
             }
-            
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }//end of RemoveMovie
 
         //Owen Matthews
@@ -137,7 +144,7 @@ namespace MovieRentalProgramProject
 
             if (updateMovie != null)
             {
-                
+                Console.WriteLine();
                 Console.WriteLine("1. Title");
                 Console.WriteLine("2. Release Date");
                 Console.WriteLine("3. Genre");
@@ -241,44 +248,52 @@ namespace MovieRentalProgramProject
 
         public static void AdminSearchMovie()
         {
-            Console.WriteLine("----------- Movie Search --------------");
-            Console.WriteLine("");
-            Console.WriteLine("Please enter the Title of the Movie");
-            string movieName = Console.ReadLine();
-            //initialize bool variable for false
-            bool found = false;
-
-            foreach (Movie movie in MovieList.movies)
+            try
             {
-                //Console.WriteLine($"DEBUG: '{movie.MovieName}'");
-                if (movie.MovieName.ToLower() == movieName.ToLower())
+
+
+                Console.WriteLine("----------- Movie Search --------------");
+                Console.WriteLine("");
+                Console.WriteLine("Please enter the Title of the Movie");
+                string movieName = Console.ReadLine();
+                //initialize bool variable for false
+                bool found = false;
+
+                foreach (Movie movie in MovieList.movies)
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("Movie Found!");
-                    Console.WriteLine($"Title: {movie.MovieName}");
-                    Console.WriteLine($"Release date: {movie.ReleaseDate}");
-                    Console.WriteLine($"Genre: {movie.GenreMovie}");
-                    Console.WriteLine($"Price: ${movie.MoviePrice}");
-                    Console.WriteLine($"Copies Available: {movie.Copies}");
-                    Console.WriteLine("");
-                
-                    //once found is true it will break out of the loop 
+                    //Console.WriteLine($"DEBUG: '{movie.MovieName}'");
+                    if (movie.MovieName.ToLower() == movieName.ToLower())
+                    {
+                        Console.WriteLine("");
+                        Console.WriteLine("Movie Found!");
+                        Console.WriteLine($"Title: {movie.MovieName}");
+                        Console.WriteLine($"Release Date: {movie.ReleaseDate}");
+                        Console.WriteLine($"Genre: {movie.GenreMovie}");
+                        Console.WriteLine($"Price: ${movie.MoviePrice}");
+                        Console.WriteLine($"Copies Available: {movie.Copies}");
+                        Console.WriteLine("");
+
+                        //once found is true it will break out of the loop 
+                        found = true;
+                        break;
+                    }
+
+
+                }
+                if (!found)
+                {
+                    Console.WriteLine("Movie not found.");
                     found = true;
-                    break;
+
                 }
 
 
             }
-            if (!found)
+            catch (Exception e)
             {
-                Console.WriteLine("Movie not found.");
-                found = true;
-
+                Console.WriteLine(e.Message);
             }
 
         }
-
-
-
     }//end of class Admin
 }//end of namespace

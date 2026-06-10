@@ -22,7 +22,8 @@
                 Console.WriteLine("");
                 Console.WriteLine("1. Sign up");
                 Console.WriteLine("2. Login");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("99. Exit");
+                Console.WriteLine();
                 Console.Write("Enter a option: ");
                 string mainChoice = Console.ReadLine();
 
@@ -35,7 +36,7 @@
                     case "2":
                         login.Login();
                         break;
-                    case "3":
+                    case "99":
                         Console.WriteLine("");
                         Console.WriteLine("---------------- Thank you -----------------");
                         Console.WriteLine("---------------- Goodbye!! -----------------");
