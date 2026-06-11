@@ -14,11 +14,9 @@
             
             
             //Owen Matthews
-            Console.WriteLine("----------- Movie Rental Program -----------");
-            Console.WriteLine("--------------------------------------------");
-            Console.WriteLine("");
             do
             {
+                Console.WriteLine("-----------Movie Rental Program----------");
                 Console.WriteLine("");
                 Console.WriteLine("1. Sign up");
                 Console.WriteLine("2. Login");
@@ -43,6 +41,7 @@
                         Environment.Exit(0);
                         break;
                     default:
+                        Console.WriteLine();
                         Console.WriteLine("Please enter a vaild number");
                         break;
 

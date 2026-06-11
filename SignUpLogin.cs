@@ -16,26 +16,51 @@ namespace MovieRentalProgramProject
         public SignUpLogin()
         {
             customers.Add(new Customer("danny", "huang"));
+            customers.Add(new Customer("owen", "matthews"));
         }
 
 
-        
+        //Owen Matthews 11/06/2026
         public void SignUp()
         {
 
             Console.WriteLine();
             Console.WriteLine("Please enter a username");
             string username = Console.ReadLine();
+            if (username.ToLower() == "admin")
+            {
+                Console.WriteLine();
+                Console.WriteLine("Invaild username");
+                return;
+            }
+            bool KnownUser = false;
+
+            foreach (Customer customer in customers)
+            {
+                if(customer.Username.Equals(username, StringComparison.OrdinalIgnoreCase))
+                {
+                    KnownUser = true;
+                    break;
+                }
+            }
+            if (KnownUser)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Username is taken. Please try again");
+                return;
+            
+            }
             Console.WriteLine("Please enter a password");
             string password = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                Console.WriteLine();
+                Console.WriteLine("Username or Password can not be empty");
+                return;
+            
+            }
             customers.Add(new Customer(username, password));
-
-            //This code is not needed at the moment
-            /*Console.WriteLine("Is this a Customer or Admin Account");
-            string userType = Console.ReadLine();
-            Console.WriteLine("");
-            */
-
             Console.WriteLine("Account has been created successfully");
         }//end of SignUp
 
@@ -54,25 +79,30 @@ namespace MovieRentalProgramProject
                 admin.AdminMenu();
 
             }
-            else 
+            //Danny Huang
+            //1/6/2026
+            //Owen Matthews 11/06/2026
+            bool loginUser = false;
+
+            foreach (Customer customer in customers)
             {
-                //Danny Huang
-                //1/6/2026
-                
-                foreach (Customer customer in customers)
+                if (customer.Username == username && customer.Password == password)
                 {
-                    if (customer.Username == username && customer.Password == password)
-                    {
-                    
-                        customer.CustomerMenu();
-                        return;
-                    }
-                    else
-                    {// if user enters a username or password not in the system
-                        Console.WriteLine("Invalid username or password");
-                    }
+                    loginUser = true;
+                    customer.CustomerMenu();
+                    break;
+
+
                 }
             }
+
+                    
+            if (!loginUser)
+            { 
+                Console.WriteLine();
+                Console.WriteLine("Invalid username or password");
+            }
+                
         }
 
 
