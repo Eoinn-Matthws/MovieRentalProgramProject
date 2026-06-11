@@ -104,20 +104,22 @@ namespace MovieRentalProgramProject
             {// .ToLower() converts inputted field to lower case letters therefore making it case-insensitive
                 if (movie.MovieName.ToLower() == movieToRent.ToLower())
                 {
+                    Console.WriteLine("Movie Found!");
                     Customer.CusCartConfirm(movie);
                     found = true;
                     break;
                 }
-                //if not found after going through the whole list it will display "Movie not found"
-                if (!found)
-                    {
-                        Console.WriteLine("Movie not found.");
-                         //exit loop 
-                        found = true;
-
-                }
-                
             }//end of foreach in RentMovie() method
+
+             //if not found after going through the whole list it will display "Movie not found"
+            if (!found)
+            {
+                Console.WriteLine("Movie not found.");
+                 //exit loop 
+                 found = true;
+
+            }
+                
 
         }//end of RentMovie() Method
         public static void ListRandomMovie()

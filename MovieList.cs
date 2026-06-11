@@ -9,7 +9,7 @@ namespace MovieRentalProgramProject
     // class for movie list
     // Danny Huang
     // 1/6/2026
-    public class MovieList
+    public class MovieList:Movie
     {
         
         //declares "movies" variable and a empty list
