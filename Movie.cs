@@ -79,11 +79,12 @@ namespace MovieRentalProgramProject
                     break;
                 }
 
-                
-            }
+
+            }//if not found after going through the whole list it will display "Movie not found"
             if (!found)
             {
                 Console.WriteLine("Movie not found.");
+                //exit loop 
                 found = true;
                 
             }
@@ -97,31 +98,25 @@ namespace MovieRentalProgramProject
 
             Console.Write("Enter the name of the movie you want to rent: ");
             string movieToRent = Console.ReadLine();
-            string userInput;
-            string userInput2;
-            string userInput3;
 
+            bool found = false;
             foreach (Movie movie in MovieList.movies)
             {// .ToLower() converts inputted field to lower case letters therefore making it case-insensitive
                 if (movie.MovieName.ToLower() == movieToRent.ToLower())
                 {
-                    Console.WriteLine($"'{movie.MovieName}' is available for rental, costs ${movie.MoviePrice}");
-                    Console.WriteLine($"Do you want to rent it? y/n");
-                    userInput = Console.ReadLine().ToLower();
-
-                    if (userInput.ToLower() == "y")
-                    {
-                        Customer.rentedMovies.Add(movie);
-                        Console.WriteLine($"Added to cart!");
-
-                    }
-                    else
-                    {
-                        Console.WriteLine("Movie not added to cart");
-                        return;
-                    }
-                
+                    Customer.CusCartConfirm(movie);
+                    found = true;
+                    break;
                 }
+                //if not found after going through the whole list it will display "Movie not found"
+                if (!found)
+                    {
+                        Console.WriteLine("Movie not found.");
+                         //exit loop 
+                        found = true;
+
+                }
+                
             }//end of foreach in RentMovie() method
 
         }//end of RentMovie() Method

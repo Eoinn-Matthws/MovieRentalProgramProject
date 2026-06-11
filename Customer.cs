@@ -71,7 +71,7 @@ namespace MovieRentalProgramProject
                     case "3":
                         do
                         {
-                            Movie.RentMovie();
+                          Movie.RentMovie();
                         } while (ContinueSearch());
                         break;
                     case "4":
@@ -98,7 +98,9 @@ namespace MovieRentalProgramProject
 
         public static void ViewCart()
         {//condition if no movies in list rentedMovies
-
+            string userInput;
+            do
+            { 
             Console.WriteLine("----------- Cart --------------");
             if (rentedMovies.Count == 0)
             {
@@ -119,23 +121,25 @@ namespace MovieRentalProgramProject
 
             Console.WriteLine($"Total Cost: ${totalCost:F2}");
             Console.WriteLine($"Do you want to check out? (y/n)");
-            string userInput = Console.ReadLine().ToLower();
+            userInput = Console.ReadLine().ToLower();
 
-            if (userInput == "y")
-            {
-                CheckOut();
-                return;
-            }
-            else if (userInput == "n")
-            {
-                Console.WriteLine($"Returning to menu...");
-                return;
-            }
-            else
-            {
-                Console.WriteLine($"Invalid input. Returning to menu...");
-                return;
-            }
+                if (userInput == "y")
+                {
+                    CheckOut();
+                    return;
+                }
+                else if (userInput == "n")
+                {
+                    Console.WriteLine($"Returning to menu...");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid input. Please enter y or n");
+                    return;
+                }
+
+            } while (userInput != "y" && userInput != "n") ;
         }//end of viewCart method
 
         public static void CheckOut()
@@ -174,7 +178,7 @@ namespace MovieRentalProgramProject
                 }
                 else if (userInput == "n")
                 {
-                    Console.WriteLine($"Movie not added to cart");
+                    Console.WriteLine($"Movie not added to cart.");
 
                 }//else if user inputs anything other than "y" or "n" do this
                 else
@@ -202,7 +206,7 @@ namespace MovieRentalProgramProject
                 else if (userInput == "n")
                 {
                     Console.WriteLine($"");
-                    Console.WriteLine("Back to Main menu..."); //This should be different - Owen 07/06/2026
+                    Console.WriteLine("Back to Main menu..."); 
                     return false;
                 }
                 else
@@ -261,8 +265,8 @@ namespace MovieRentalProgramProject
 
             Console.WriteLine($"A copy of '{movie.MovieName}' has been successfully removed from your cart.");
             Console.WriteLine($"Copies Available: {movie.Copies}");
-        }   
-        
+        }
+       
 
     }//end of customer class
 
