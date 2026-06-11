@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MovieRentalProgramProject.Admin">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgIAAACAAAAAEAAAAAAAAAAAAAAAAAABAAAIAAAAAAA=</HashCode>
+      <FileName>Admin.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="movieDatabase" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MovieRentalProgramProject.Customer">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAABAAAARQAAAEAAAAAAEACAkAAAkAAACA=</HashCode>
+      <FileName>Customer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="rentedMovies" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MovieRentalProgramProject.Program">
+    <Position X="2.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MovieRentalProgramProject.MovieList">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MovieList.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="movies" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MovieRentalProgramProject.SignUpLogin">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAACAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>SignUpLogin.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="customers" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MovieRentalProgramProject.Movie">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAMCIIhAEiAAQAIAAAAQAAAAEAEAAAAAAAAA=</HashCode>
+      <FileName>Movie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
